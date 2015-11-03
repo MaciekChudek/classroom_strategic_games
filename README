@@ -1,0 +1,10 @@
+Online, dynamic, multiplayer economic games platform. Great for demonstrating strategic games in the classroom.
+
+Language: javascript, node.js, meteor framework
+
+
+
+Using reactive web technologies (specifically, meteor) I put together a little web platform for playing strategic games (e.g., dictator, trust, public goods, etc) in real time with your class. You use a web interface to design the game (e.g., start with an endowment, get paired with another random student, give away any amount to them, increase it by a multiplier, punish the person who just gave (or didn't) to you, etc.). Then you launch the game and give students a unique, auto-generated web link. When they visit it in their browser, they receive a random ID number (and a cookie, so they keep the same ID even if they restart their browser, computer, etc.).
+
+As you step through the stages of the game the students' screens automatically change in real time. The platform automatically pairs students with random partners, tracks their 'points', shows them widgets for selecting how much to give, etc. Throughout you see in real time how many students have made each decision, so you know when to move on. At the end you see a full description of what everyone (identified by random ID) did at each stage and their final score, so you can actually pay them.
+

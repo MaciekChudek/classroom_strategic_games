@@ -1,0 +1,11 @@
+<template name="slider">
+	{{#if this.id}}
+		{{#if has_range}}
+	<input data-slider-id={{this.id}} type="text" data-slider="true" data-slider-theme="volume" data-slider-range="{{range}}" data-slider-step="1" data-slider-snap='true'>
+		{{else}}
+			<p>Sorry, in this case your only choice is zero.</p>
+		{{/if}}
+	{{/if}}	
+</template>
+
+

@@ -1,0 +1,62 @@
+
+
+<template name="teacher_design">
+	
+	<div id = 'menu_region'>
+		<div id='back_button' class='button'>Back to main menu</div> <br />
+		<div>
+			<h5>Game name:</h5>
+			<input type="text" value={{name}} id='game_name_input'>
+		</div>
+		{{> teacher_design_menu}}
+	</div>
+	<div id='conent_region'><span>
+		{{> teacher_design_content selected_phase}}
+	</span></div>
+</template>
+
+<template name="teacher_design_menu">
+	<h2>Phases: &darr;</h2>
+	<hr />
+	<table class='tally_table'>
+	<tr><td><div class='button inactive' >Login</div> </td></tr>
+	{{#each phases}}
+	<tr><td><div class='button phase_button' data-id='{{id}}' >{{type}}</div></td><td>
+	<div class='button delete_button' data-id='{{id}}'><span class="glyphicon glyphicon-remove"></span> </div></td></tr>
+	{{/each}}
+	<tr><td><div class='button' id='add_phase_button' >Add New</div></td></tr>
+	</table>
+</template>
+
+
+<template name="teacher_design_content">
+		<div class="hero-unit">
+		    {{#if type}}
+				<h1>{{type}} (<a href='#' class='phase_help' data-type='{{type}}'>help</a>)</h1>
+		    {{/if}}
+		{{#with variables}}
+			<div class="form-group">
+			{{#if has "message"}}
+				<h5>Message (<a href='#' class='message_help'>help</a>):</h5>
+				<textarea id='message_input' class="form-control" rows="3" placeholder="Your students will see this message. The help link has important information on special values you can include.">{{message}}</textarea><br />
+			{{/if}}
+			
+			{{#if has "target"}}
+					<h5>Target (<a href='#' class='target_help'>help</a>):</h5>
+					<div class="btn-group">
+					  <button type="button" class="btn btn-default {{active_button 'Random'}} target_button" data-target='Random'>Random</button>
+					  <button type="button" class="btn btn-default {{active_button 'Repeat'}} target_button"  data-target='Repeat'>Repeat</button>
+					  <button type="button" class="btn btn-default {{active_button 'Reciprocate'}} target_button"  data-target='Reciprocate'>Reciprocate</button>
+					</div> <br />
+			{{/if}}					
+			
+			
+			{{#if has "multiplier"}}
+					<h5>Multiplier (<a href='#' class='multiplier_help'>help</a>):</h5>   
+					 <input type="text" class="form-control" id="multiplier_input" placeholder="Must be a real number" value={{multiplier}}>
+					<br />
+			{{/if}}		
+			</div>	
+		{{/with}}
+		</div>
+</template>

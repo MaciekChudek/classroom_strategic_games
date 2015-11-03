@@ -1,0 +1,19 @@
+<template name="toggle_buttons">
+	{{#if this.button_set_id}}
+	<div button_set_id={{this.button_set_id}} class="toggle_button_container">
+		<table class='toggle_button_table'>		
+			
+			{{#each buttons}}
+			<tr>
+				<td>
+					<div class='toggle_button' button_value={{value}}>{{text}}</div>
+				</td>
+			</tr>
+			{{/each}}
+			
+		</table>
+	</div>
+	{{/if}}
+</template>
+
+

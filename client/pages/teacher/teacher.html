@@ -1,0 +1,56 @@
+
+
+<template name="teacher">	
+	{{#if currentUser}}
+		{{> teacher_main_menu}}
+	{{else}}
+		{{> teacher_login}}
+	{{/if}}
+</template>
+
+
+<template name="teacher_main_menu">	
+	
+	<table id='teacher_main_menu_table'>
+		<tr>
+			<th><div id='teacher_design_new_button' class='button'>New</div></th>
+		</tr>
+		<tr>
+			<th>Name</th>
+			<th>Number of Phases</th>
+			<th></th>
+			<th></th>
+		</tr>
+		{{#each games}}
+		<tr>
+			<td>{{name}}</td>		
+			<td>{{phase_count}}</td>		
+			<td><a href='{{pathFor "teacher_design" _id}}'  class=' button'>Design</a></td>		
+			<td><a href='{{pathFor "teacher_play" _id}}'  class=' button'>Play</a></td>		
+			<td><a href='#' data-id='{{_id}}' class=' button delete_button'>Delete</a></td>
+			<td><a href='#' data-id='{{_id}}' class=' button reset_button'>Reset</a></td>
+			<td><a href='{{pathFor "teacher_results" _id}}'  class=' button'>Results</a></td>	
+		</tr>					
+		{{/each}}
+	</table>
+	
+</template>
+
+
+
+
+
+
+<template name="teacher_login">
+	<div class='full_screen_div'>
+		<span>				
+			<p>Log in:</p>			
+			<table>
+			<tr><td>Username: <input type="text" name="password" id='teacher_login_username' value=''> </td></tr>
+			<tr><td>Password: <input type="password" name="password" id='teacher_login_password' value=''> </td></tr>
+			<tr><td><button type="button" id='teacher_login_button'> Submit </button> </td></tr>
+			</table>
+		</span>
+	</div>
+</template>
+

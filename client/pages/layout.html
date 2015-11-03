@@ -1,0 +1,19 @@
+
+<head>
+  <title>In-class Cooperative Dilemmas</title>
+</head>
+
+<body>
+	
+</body>
+
+
+
+
+<template name="layout">
+  {{#if currentUser}}<div id='logout_button' class='button'>Log out</div>{{/if}}
+  <div id='main_body_div'>
+  {{> yield}}
+  </div>
+</template>
+

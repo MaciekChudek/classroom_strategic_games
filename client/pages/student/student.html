@@ -1,0 +1,124 @@
+<template name="student_null">	
+	<div id='conent_region' class='full_screen_div'><span>
+		No studies running. Your instructor will provide you with the correct link once they have started the study.
+		</span></div>
+</template>
+
+
+
+<template name="student">	
+	{{#if this.student}}
+		{{> student_header this}} 
+	{{/if}}
+	<div id='conent_region' class='full_screen_div'><span>
+	{{#if this}}		
+		{{#if is_phase "Login"}}
+			{{> student_logged_in this}}
+		{{else}}
+			{{#if is_phase "Results"}}
+				{{> student_results this}}
+			{{else}}
+				{{#if this.student}}			
+					{{> student_game_content this}}
+				{{else}}
+					{{> student_no_login}}
+				{{/if}}
+			{{/if}}
+		{{/if}}
+	{{else}}
+		{{> student_no_game}}
+	{{/if}}
+	</span></div>
+</template>
+
+
+
+
+<template name="student_game_content">
+	<p>{{{parse_message}}}</p>
+	{{#if is_phase "Dictator"}} {{> student_decision this}} {{/if}}
+	{{#if is_phase "Exploitation"}} {{> student_decision this}} {{/if}}
+	{{#if is_phase "Punishment"}} {{> student_decision this}} {{/if}}
+	{{#if is_phase "Ultimatum"}} {{> student_dichotomous this}} {{/if}}
+</template>
+
+
+<template name="student_decision">
+	
+	{{#if student}}
+		{{#if has_offer}}
+		<br />
+		<hr />
+		<br />
+		<span>You chose: {{offer}}</span>
+		{{else}}
+			<table class='slider_table'><tr><td>
+				<span>{{amount}}</span>
+			</td><td class='slider_cell'>
+			 {{> slider slider_data}}
+			</td>
+			</tr><tr><td>
+			<div class='button' id='make_offer'>Submit</div>
+			</td></tr></table>
+		{{/if}}
+	{{/if}}
+</template>
+
+<template name="student_dichotomous">
+
+	{{#if is_offer 1}} <p>You selected: Yes.</p> {{/if}}
+	{{#if is_offer 0}} <p>You selected: No.</p> {{/if}}
+	{{#if is_offer 'none'}} 	
+		<table class='slider_table'><tr>
+			<td><div class='button' id='student_decision_yes'>Yes</div></td>
+			<td><div class='button' id='student_decision_no'>No</div></td>
+		</tr></table>
+	 {{/if}}
+	
+</template>
+
+
+
+<template name="student_results">
+	<p>The game is over. Please record your ID number from the top left of the screen, since without it you will not be able to redeem any rewards.</p>	
+</template>
+
+
+
+
+
+
+
+<template name="student_login_redirect">
+		<div id='conent_region' class='full_screen_div'><span>
+		Searching for active game...
+		</span></div>
+</template>
+
+
+
+<template name="student_header">
+		<div id='student_header'>
+			<table>
+				<tr><td>ID:</td><td> {{truncated_id}}</td></tr> 
+				<tr><td>Score:</td><td> {{this.student.score}}</td></tr> 
+			</table>
+		</div>
+</template>
+
+<template name="student_no_game">
+	<p>No game is currently running. </p><p>Ask your instructor for login instructions.</p>
+</template>
+
+
+<template name="student_no_login">
+	<p>You are not logged in to this game. </p><p>Wait for the instructor to tell you it's time to log in.</p>
+</template>
+
+<template name="student_logged_in">
+	<p>You've logged in.</p>
+	
+	<p>Your unique ID is: <br /><br /><hr /><strong>{{truncated_id 5 get_student_id}}</strong><hr /></p>
+</template>
+
+

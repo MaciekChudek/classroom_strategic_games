@@ -1,0 +1,26 @@
+
+
+<template name="teacher_register_login">
+	<div id='conent_region' class='full_screen_div'><span>	
+			<p>&nbsp;{{#if failed_attempt}}Incorrect...{{/if}}</p>			
+			<input type="text" name="password" id='teacher_register_password_input' value='password...'>
+	</span></div>
+</template>
+
+<template name="teacher_register">
+	{{#if authorized}}	
+	<div id='conent_region' class='full_screen_div'>
+		<span style='text-align: left;'>			
+			<p>Congratulations, you are allowed to register a new user.</p><p> Enter a username and password. No restrictions, don't forget them. </p><p>If the username already exists in the system, nothing will happen when you hit submit. Pick another.</p><p> Pick a simple, senseible username (like your last name), since your students will access your games by going to <br/><br/> {{current_url}}[YOUR_USER_NAME] </p>	
+			<table>
+			<tr><td>Username: <input type="text" name="password" id='teacher_register_username' value=''></td></tr>
+			<tr><td>Password: <input type="password" name="password" id='teacher_register_password' value=''></td></tr>
+			<tr><td><button type="button" id='teacher_register_button'> Submit </button></td></tr>
+			</table>		
+		</span>
+	</div>
+	{{else}}
+		{{> teacher_register_login}}
+	{{/if}}
+</template>
+

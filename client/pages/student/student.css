@@ -1,0 +1,18 @@
+div#student_header{
+ background: #eee;
+ position: absolute;
+ left: 20px;
+ top: 20px;
+ 
+}
+div#student_header td{
+text-align: right;
+padding-left: 15px;
+}
+
+.slider_table{
+	width: 100%;
+}
+.slider_cell{
+	width: 80%;
+}

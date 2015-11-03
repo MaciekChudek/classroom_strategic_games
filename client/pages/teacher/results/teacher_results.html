@@ -1,0 +1,62 @@
+<template name="teacher_results">
+	<div id='back_button' class='button'>Back to main menu</div> <br />
+	{{> teacher_results_basic this}}	
+	<br /><hr /><br />
+	{{> teacher_results_full this}}
+</template>
+
+<template name="teacher_results_basic">
+	<h2>Final Scores (html):</h2>
+	<table class='results_table'>
+		<tr><th>ID</th><th>Final Score</th></tr>
+	{{#each students}}
+		<tr><td>{{truncated_id}}</td><td>{{score}}</td></tr>
+	{{/each}}
+	</table>
+	
+	<h2>Final Scores (csv):</h2>
+	<div class='well'>
+	ID, Final Score<br />
+	{{#each students}}
+		{{truncated_id}}, {{score}}<br />
+	{{/each}}	
+	</div>
+	
+</template>
+
+<template name="teacher_results_full">
+	<h2>Full results (html):</h2>
+	<p><b>Act:</b>The amount that this student chose on their slider in this round.</p>
+	<p><b>Active_income:</b>The absolute change in the student's score as a conequence of their own choice (e.g., in dictator or punishment rounds they'd lose this much, in exploitation rounds they'd gain it). </p>
+	<p><b>Passive_income:</b>The absolute change in the student's score as a conequence of someone else's (e.g., a dictor's) choice.</p>
+	<p>Please note that, for the sake of having more robust message variables, the active and passive income amounts are the absolute values. When analysing, you'll need to interpret based on the phase type whether this amount was added or subtracted.</p>
+	<table class='results_table'>
+		<tr><th>ID</th><th>Phase_id</th><th>Phase_type</th><th>Target</th><th>Act</th><th>Active_income</th><th>Passive_income</th></tr>
+		
+	{{#each students}}
+		<tr class='gap'><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+		{{#each phases}}
+		<tr>
+			<td>{{truncated_id 5 ../_id}}</td> 
+			<td>{{id}}</td> 	
+			<td>{{phase_type id ../../phases}}</td> 
+			<td>{{truncated_id 5 target}}</td> 
+			<td>{{offer}}</td> 	
+			<td>{{active_income}}</td> 	
+			<td>{{passive_income}}</td>
+		</tr>
+		{{/each}}
+	{{/each}}
+	</table>
+	
+	<h2>Full Scores (csv):</h2>
+	<div class='well'>
+	ID,Phase_id,Phase_type,Target,Act,Active_income,Passive_income<br />
+	{{#each students}}
+		{{#each phases}}
+			{{truncated_id 5 ../_id}}, {{id}}, {{phase_type id ../../phases}}, {{truncated_id 5 target}}, {{offer}}, {{active_income}}, {{passive_income}} <br />
+		{{/each}}
+	{{/each}}
+	</div>
+	
+</template>

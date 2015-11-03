@@ -1,0 +1,91 @@
+
+
+<template name="teacher_play">	
+	<div id = 'menu_region'>
+		<div id='back_button' class='button'>Back to main menu</div> <br />
+		{{> teacher_play_menu this}}
+	</div>
+	<h3 class='game_name_div'>{{name}}</h3>
+	<div id='conent_region' class='full_screen_div'><span>
+		{{#if current_phase 'Login'}}
+			{{> teacher_play_login}}			
+		{{else}}
+			{{#if current_phase 'Results'}}
+				These are the final scores. Click the result button in the main menu for full results.
+				{{> teacher_results_basic this}}
+			{{else}}
+				{{#if current_phase 'Endowment'}}
+					{{> teacher_play_endowment}}
+				{{else}}
+					{{> teacher_play_default}}
+				{{/if}}	
+			{{/if}}			
+		{{/if}}
+	</span></div>
+</template>
+
+<template name="teacher_play_login">
+	<p>Students are currently able to log in by going to</p><h4> {{getStudentPath}}</h4>
+	<p>or</p><h4> {{getTeacherPath}}</h4>
+	<hr /> <p> When you click the first phase, no more logins will be possible.</p>
+</template>
+
+<template name="teacher_play_default">
+	<p>Students are currently able to make the decisions for this phase.</p>
+	<p>Move on to the next phase by clicking its button in menu on the left.</p>
+	<p>You can see how many student have completed their decisions in the left hand menu. If you move on to the next phase before all students have completed their decisions, those students may be excluded in future phases. This can cause a cascading effect in future rounds, where other students who needed to interact with these guys (e.g., respond to there offer, etc) also need to be excluded. The system will try to salvage as many students as possible given the drop-outs, but it's far better to make sure everyone is ready before moving on.</p>
+</template>
+
+<template name="teacher_play_endowment">
+	<p>Students have been endowed.</p>
+	<p>You can move on to the next phase at any time, no student input is needed.</p>
+</template>
+
+
+<!--
+
+<template name="teacher_reset">
+	<p>Students can now log in. </p>
+	<p> Hit "decision phase" to move on. </p>
+	<p> When you do, no further logins will be possible.</p>
+	
+	<p> Number of students logged in: {{n_logged_in}} </p>
+</template>
+
+<template name="teacher_decision">
+	<p>Students are making their offers. </p>
+	<p> Hit "response phase" to move on. </p>
+	<p> When you do, no further offers will be possible. Students who have not made offers will be excluded.</p>
+</template>
+
+<template name="teacher_response">
+		<p>Students are making their response. </p>
+	<p> Hit "results phase" to move on. </p>
+	<p> When you do, no further responses will be possible. Students who have not made responses will automatically give back the maximum amount.</p>
+</template>
+-->
+
+
+<template name="teacher_play_menu">
+	
+	<!--<div class='button {{button_state "reset"}}' id='reset_button'>Reset</div>-->
+	<table id='teacher_main_menu_table'>
+		<tr><th>Phase</th><th>n</th></tr>
+	<tr><td><div class='button {{button_state -1 phase phases}}' id='login_phase_button'>Login</div></td><td>{{n_logged_in}}</td></tr>
+	{{#each phases}}
+		<tr><td><div class='button phase_button  {{button_state id ../phase ../phases}}' id='decision_phase_button'>{{type}}</div></td><td>{{n_offered id}}</td></tr>
+	{{/each}}	
+	<tr><td><div class='button {{button_state 9999 phase ../phases}}' id='results_phase_button'>Results</div></td><td></td></tr>
+	</table>
+	<!--
+	<table class='tally_table'>
+		<tr><td><div>Logged in:</div></td><td><div>{{n_logged_in}}</div></td></tr>
+		<tr><td><div>Offers:</div></td><td><div>{{n_offers}}</div></td></tr>
+		<tr><td><div>Responses:</div></td><td><div>{{n_responses}}</div></td></tr>
+	</table>
+	-->
+</template>
+
+
+
+
